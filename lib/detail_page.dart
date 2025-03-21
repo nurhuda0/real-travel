@@ -17,7 +17,9 @@ class DetailPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(trip['photo'], height: 200, width: double.infinity, fit: BoxFit.cover),
+              trip['photo'].startsWith('http')
+                  ? Image.network(trip['photo'], height: 200, width: double.infinity, fit: BoxFit.cover)
+                  : Image.asset(trip['photo'], height: 200, width: double.infinity, fit: BoxFit.cover),
               SizedBox(height: 16),
               Text(trip['title'], style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               SizedBox(height: 8),
@@ -29,7 +31,7 @@ class DetailPage extends StatelessWidget {
               ),
               SizedBox(height: 16),
               Text('Summary:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
+              Text(trip['description']),
               SizedBox(height: 16),
               Text('Price: ${trip['price']}', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(height: 16),
